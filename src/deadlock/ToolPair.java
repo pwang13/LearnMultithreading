@@ -1,4 +1,4 @@
-package singlethread.deadlock;
+package deadlock;
 
 public class ToolPair {
     private final Tool fork, knife;

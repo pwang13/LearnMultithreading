@@ -1,4 +1,4 @@
-package singlethread.mutex;
+package mutex;
 
 public class TestThread implements Runnable{
     private final Mutex mutex;

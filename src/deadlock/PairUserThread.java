@@ -1,4 +1,4 @@
-package singlethread.deadlock;
+package deadlock;
 
 public class PairUserThread implements Runnable {
     private final String name;

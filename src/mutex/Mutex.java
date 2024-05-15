@@ -1,4 +1,4 @@
-package singlethread.mutex;
+package mutex;
 
 // implementation of synchronized
 public class Mutex {
