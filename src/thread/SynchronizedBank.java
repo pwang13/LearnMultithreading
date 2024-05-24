@@ -1,4 +1,4 @@
-package fundamental;
+package thread;
 
 public class SynchronizedBank {
     private int deposit;

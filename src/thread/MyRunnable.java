@@ -1,4 +1,4 @@
-package fundamental;
+package thread;
 
 public class MyRunnable implements Runnable {
     private final String message;
