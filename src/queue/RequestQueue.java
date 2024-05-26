@@ -12,9 +12,11 @@ import java.util.concurrent.SynchronousQueue;
  */
 public class RequestQueue {
     private final Queue<String> queue;
+    private final Long timeout;
 
-    public RequestQueue() {
+    public RequestQueue(Long timeout) {
         queue = new LinkedList<>();
+        this.timeout = timeout;
     }
 
     public synchronized void send(String msg) {
@@ -24,7 +26,7 @@ public class RequestQueue {
 
     public synchronized String get() throws InterruptedException {
         while (queue.isEmpty()) {
-            wait();
+            wait(timeout);
         }
 
         return queue.poll();
