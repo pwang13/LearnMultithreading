@@ -1,5 +1,7 @@
 package termination;
 
+import synchronizaton.Saver;
+
 import java.util.concurrent.CountDownLatch;
 
 public class Main {
@@ -8,14 +10,19 @@ public class Main {
         /**
          * shutdown a thread using two phase termination
          */
-//        CountUp countUp = new CountUp();
-//        System.out.println(Thread.currentThread().getName() + " start");
-//        countUp.start();
-//        Thread.sleep(1000);
-//        System.out.println(Thread.currentThread().getName() + " shutdown");
-//        countUp.shutdown();
-//        countUp.join();
-//        System.out.println(Thread.currentThread().getName() + " end");
+        Saver saver = new Saver();
+        CountUp countUp = new CountUp(saver);
+        CountUp countUp2 = new CountUp(saver);
+        System.out.println(Thread.currentThread().getName() + " start");
+        countUp.start();
+        countUp2.start();
+        Thread.sleep(1000);
+        System.out.println(Thread.currentThread().getName() + " shutdown");
+        countUp.shutdown();
+        countUp2.shutdown();
+        countUp.join();
+        countUp2.join();
+        System.out.println(Thread.currentThread().getName() + " end");
 
         /**
          * shut down gracefully

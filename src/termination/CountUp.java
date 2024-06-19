@@ -1,15 +1,17 @@
 package termination;
 
+import synchronizaton.Saver;
+
 import java.util.concurrent.CountDownLatch;
 
 public class CountUp extends Thread {
-    private final CountDownLatch latch;
     private volatile boolean isShutDown = false;
     private int count;
+    private final Saver saver;
 
-    public CountUp(CountDownLatch latch) {
+    public CountUp(Saver saver) {
         count = 0;
-        this.latch = latch;
+        this.saver = saver;
     }
 
     public void shutdown() {
@@ -29,9 +31,12 @@ public class CountUp extends Thread {
         } catch (InterruptedException e) {
             System.out.println("handle interruption");
         } finally {
-            shutdown();
-            latch.countDown();
-            System.out.println("shut down");
+            doShutDown();
         }
+    }
+
+    private void doShutDown() {
+        System.out.println("shut down");
+        saver.write(count);
     }
 }
